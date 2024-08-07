@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<style>
+    .s1 {
+        /* display: none; */
+        height: 600px;
+        display: block;
+    }
+</style>
+
+<body class="p-5">
+
+    <div class="d-flex flex-row position-relative w-100 my-5 ">
+        <div class="s1  w-100 carousel-inner ">
+            <img src="https://i.pinimg.com/736x/cf/4c/08/cf4c0800521c9b642bd8f4c8b1f2f351.jpg" class="d-block w-100"
+                alt="...">
+        </div>
+        <div class="s1  w-100 carousel-inner">
+            <img src="https://i.pinimg.com/564x/4b/3c/d4/4b3cd434c1c689ae5f70a58d2a8cb30c.jpg" class="d-block w-100"
+                alt="...">
+        </div>
+        <div class="s1  w-100 carousel-inner">
+            <img src="https://i.pinimg.com/736x/52/fa/d8/52fad8670c866f6c2fe96863035c4476.jpg" class="d-block w-100"
+                alt="...">
+        </div>
+
+
+        <button onclick="prev() " class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button onclick="next() " class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+
+    <script>
+        console.log("hello");
+
+        let di = 0;
+        const divs = document.querySelectorAll(".s1");
+
+        function hd() {
+            divs.forEach(div => {
+                div.style.display = "none"
+            });
+        }
+        function sd(index) {
+            hd();
+            divs[index].style.display = 'flex';
+        }
+
+        function prev() {
+            di = (di - 1 + divs.length) % divs.length;
+            sd(di);
+        }
+
+        function next() {
+            di = (di + 1) % divs.length;
+            sd(di);
+        }
+
+        sd(di);
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
