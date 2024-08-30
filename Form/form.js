@@ -1,22 +1,40 @@
 console.log("Jay Bajrangbali");
 let Email = document.getElementById("floatingInput");
-let password = document.getElementById("floatingPassword")
+let password = document.getElementById("floatingPassword");
+let text = document.getElementById("floatingText");
+let Number = document.getElementById("floatingNumber");
 let span = document.getElementById("error");
 let span2 = document.getElementById("error2");
-let a ="@";
+let span3 = document.getElementById("error3");
+let span4 = document.getElementById("error4");
+
 
 
 function checkform() {
-    if (floatingInput.value == "") {
-        span.innerText = "The email address you entered isn't connected to an account. Find your account and log in.";
-        span.style.color ="red";
+
+    if (text.value == "") {
+        span3.style.display = "block"
+        span3.innerText = "User name is unvalid";
+        span3.style.color = "red";
+    }else {
+        span3.style.display = "none";
+        
     }
-    // else if (floatingInput.value.includes(a)){
-    //     span.innerText ="verified";
-    //     span.style.color ="green";
-    // } 
-    else if (floatingPassword.value == "") {
-        span2.innerText ="The password that you've entered is incorrect. ";
-        span2.style.color ="red";
+
+    if (password.value == "") {
+        span3.style.display = "block"
+        span3.innerText = "password is unvalid";
+        span3.style.color = "red";
+    }else {
+        span3.style.display = "none";
+        
     }
+ 
 }
+
+
+
+
+
+
+
