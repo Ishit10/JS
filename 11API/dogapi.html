@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="" alt="" id="img">
+
+
+    <script>
+        async function getdogdata() {
+     
+       const apikey = "AIzaSyB-Glwlgz2D0sXEHI_zsiwYESaifi-54LI"
+       const apidata = await fetch(`https://dog.ceo/api/breeds/image/random/ + ${apikey}`);
+       const data = await apidata.json();
+       document.getElementById("img").src = data.message
+        }
+        getdogdata();
+    </script>
+</body>
+</html>

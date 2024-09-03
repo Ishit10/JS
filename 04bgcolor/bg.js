@@ -24,3 +24,7 @@ function next() {
 }
 
 sd(di);
+setInterval(next, 2000); 
+
+
+
