@@ -1,0 +1,91 @@
+.container-fluid{
+      display: flex; 
+      gap: 600px;
+    margin-left: 300px;
+      
+}
+
+.bg-image1{
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.navbar-brand{
+    color: white;
+}
+.nav-link{
+    color: white;
+}
+.head{
+    font-size: 55px;
+    color: white;
+    margin-left: 400px;
+    margin-top: 80px;
+}
+.lead{
+    color: white;
+    margin-left: 370px;
+}
+.button1{
+    margin-left: 580px;
+    margin-top: 10px;
+}
+.list{
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    padding: 20px;
+    width: 100%;
+}
+.head2{
+    margin-left: 550px;
+}
+.car1{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+.c1{
+    width: 450px;
+    height: 300px;
+}
+
+
+/* Add some responsive design classes */
+@media (max-width: 768px) {
+    .bg-image {
+      height: 50vh;
+    }
+    .head {
+      font-size: 24px;
+    }
+    .lead {
+      font-size: 14px;
+    }
+    .button1 {
+      margin-top: 10px;
+    }
+    .list {
+      flex-wrap: wrap;
+    }
+    .car1 {
+      flex-wrap: wrap;
+    }
+  }
+  @media (max-width: 480px) {
+    .bg-image {
+      height: 30vh;
+    }
+    .head {
+      font-size: 18px;
+    }
+    .lead {
+      font-size: 12px;
+    }
+    .button1 {
+      margin-top: 5px;
+    }
+  }
+
+
+
+
