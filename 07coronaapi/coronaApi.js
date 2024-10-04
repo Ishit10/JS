@@ -1,30 +1,47 @@
-console.log("Jay Bajrangbali");
+$(document).ready(function () {
+    // Base URL for COVID-19 data API
+    const apiUrl = "https://disease.sh/v3/covid-19/countries";
 
-
-const countryselect = document.getElementById("countryselect");
-
-function countryoptions() {
-    for (const key in )
-}
-
-
-
-async function corona() {
-    const url = 'https://covid-19-data.p.rapidapi.com/country/code?format=json&code=ind';
-    const options = {
-        method: 'GET',
-        headers: {
-            'x-rapidapi-key': 'f350207284mshae371415704f599p1c7950jsncae14bf364b2',
-            'x-rapidapi-host': 'covid-19-data.p.rapidapi.com'
-        }
-    };
-
-    try {
-        const response = await fetch(url, options);
-        const result = await response.json();
-        console.log(result);
-    } catch (error) {
-        console.error(error);
+    // Function to fetch data and render it
+    function fetchData() {
+        $.ajax({
+            url: apiUrl,
+            method: "GET",
+            success: function (data) {
+                renderCountries(data);
+            },
+            error: function () {
+                alert("Error fetching data from the API");
+            }
+        });
     }
-}
-corona();
+
+    // Render data
+    function renderCountries(data) {
+        $("#country-data").empty();
+        data.forEach(country => {
+            const countryCard = `
+                <div class="col-md-4">
+                    <div class="country-card">
+                        <h3>${country.country}</h3>
+                        <p><strong>Cases:</strong> ${country.cases}</p>
+                        <p><strong>Deaths:</strong> ${country.deaths}</p>
+                        <p><strong>Recovered:</strong> ${country.recovered}</p>
+                        <img src="${country.countryInfo.flag}" alt="Flag of ${country.country}" width="50">
+                    </div>
+                </div>`;
+            $("#country-data").append(countryCard);
+        });
+    }
+
+    // Fetch data when page loads
+    fetchData();
+
+    // Search function
+    $("#search-country").on("input", function () {
+        const value = $(this).val().toLowerCase();
+        $(".country-card").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+        });
+    });
+});

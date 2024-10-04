@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Weather App</title>
+    <style>
+        /* Styling for the body to make the app centered and visually appealing */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Styling for the container that holds the weather app */
+        .weather-container {
+            text-align: center;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styling for the input field for entering city names */
+        input {
+            padding: 10px;
+            font-size: 16px;
+            width: 200px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        /* Styling for the "Get Weather" button */
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Styling for the button when hovering */
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Styling for the area where weather information is displayed */
+        #weather-result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Weather App Container -->
+    <div class="weather-container">
+        <h1>Weather App</h1>
+        <!-- Input field for the city name -->
+        <input type="text" id="city" placeholder="Enter city name" />
+        <!-- Button to trigger the API call -->
+        <button id="get-weather">Get Weather</button>
+
+        <!-- Area where the weather information will be displayed -->
+        <div id="weather-result">
+            <!-- Weather data will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        // Adding an event listener to the "Get Weather" button
+        document.getElementById("get-weather").addEventListener("click", function () {
+            // Getting the value of the input field (city name)
+            const city = document.getElementById("city").value;
+
+            // Replace with your OpenWeather API key
+            const apiKey = "093b6f1061beea76b15c9ed763024dcd";
+
+            // Checking if a city was entered
+            if (city) {
+                // Creating the API URL with the city and API key
+                const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+                // Using Fetch API to get weather data
+                fetch(apiUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Checking if the API response is successful
+                        if (data.cod === 200) {
+                            // Displaying the weather information on the page
+                            document.getElementById("weather-result").innerHTML = `
+                                <h2>Weather in ${data.name}, ${data.sys.country}</h2>
+                                <p>Temperature: ${data.main.temp}°C</p>
+                                <p>Weather: ${data.weather[0].description}</p>
+                                <p>Humidity: ${data.main.humidity}%</p>
+                                <p>Wind Speed: ${data.wind.speed} m/s</p>
+                            `;
+                        } else {
+                            // Handling case where city is not found
+                            document.getElementById("weather-result").innerHTML = `
+                                <p style="color: red;">City not found. Please try again.</p>
+                            `;
+                        }
+                    })
+                    .catch(error => {
+                        // Handling errors when fetching data
+                        console.error("Error fetching data:", error);
+                        document.getElementById("weather-result").innerHTML = `
+                            <p style="color: red;">An error occurred while fetching data. Please try again.</p>
+                        `;
+                    });
+            } else {
+                // Alerting the user if no city was entered
+                alert("Please enter a city name.");
+            }
+        });
+    </script>
+</body>
+
+</html>
